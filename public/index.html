@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="index.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to chat-service</h1>
+
+    <div class="container">
+        <button type="button" id="registerBtn" onclick="showRegisterForm()">Register</button>
+        <button type="button" id="loginBtn" onclick="showLoginForm()">Login</button>
+    </div>
+
+    <form id="registerForm" style="display: none;">Register Form<br><br>
+        <lable for="username"> Choose a username:</lable>
+        <input type="text" id="usernameReg" name="usernameReg"><br>
+        <lable for="password">Enter password:</lable>
+        <input type="text" id="passwordReg" name="passwordReg"><br>
+        <lable for="email">Enter your email:</lable>
+        <input type="text" id="emailReg" name="emailReg"><br>
+        <div class="align-right">
+            <button type="submit" id="registerFrmBtn">Register</button>
+        </div>
+        <i class="fa fa-warning" style="display: none;"></i>
+        <div id="errMsg"></div>
+        
+
+    </form>
+
+    <form id="loginForm" style="display: none;">Login Form<br><br>
+        <lable for="username"> Enter username:</lable>
+        <input type="text" id="usernameLogin" name="usernameLogin"><br>
+        <lable for="password">Enter password:</lable>
+        <input type="text" id="passwordLogin" name="passwordLogin"><br>
+        <div class="align-right">
+            <button type="submit" id="loginFrmBtn">Login</button>
+        </div>
+        <i class="fa fa-warning" style="display: none;"></i>
+        <div id="errMsgLogin"></div>
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <form id="EnterRoomFrm">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name">
+        <div id="Enterdiv">
+            <button type="submit" id="Enterbtn">Enter to room</button>
+        </div>
+    </form> -->
+
+    <!-- <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+    </script> -->
+
+</body>
+
+</html>

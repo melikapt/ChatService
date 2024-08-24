@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="chat.css">
+    <script type="text/javascript" src="chat.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="notificationContainer">
+        <!-- <div id="notificationMessage">
+            <p>is notificationasdasfdasdada</p>
+        </div> -->
+    </div>
+
+    <div id="fileContainer">
+        <h3>Uploaded files</h3>
+        <div class="files">
+            file-1724439613875-931542367<br>
+            <p class='fileSender'>sent by melika</p>
+        </div>
+    </div>
+
+    <div id="chatContainer">
+        <!-- <div class="self">
+            <p>hi melika,good job!</p>
+        </div> -->
+        <!-- <div class="other">
+            <p>hi dear,thanks!</p>
+        </div> -->
+    </div>
+
+    <form id="sendMessage">
+        <input id="messageInput" type="text" placeholder="Message">
+        <button type="submit" id="submitMessage">send</button>
+    </form>
+
+    <form id="uploadFile" enctype="multipart/form-data" method="post">
+        <input type="submit" value="UploadMe!">
+        <input id="uploadedFile" type="file" name="file">
+    </form>
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+    </script>
+</body>
+
+</html>
