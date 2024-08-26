@@ -30,7 +30,7 @@ const Message=mongoose.model('message',messageSchema);
 
 function validateMessage(message) {
     const schema = Joi.object({
-        message: Joi.required(),
+        message: Joi.string().required(),
     })
     return schema.validate(message)
 }

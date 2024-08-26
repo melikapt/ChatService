@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // setTimeout(function() {
-    //     $('#notificationContainer').fadeOut('fast');
-    // }, 2000);
     fetch('http://localhost:3000/message', {
         method: 'GET',
         headers: {
@@ -74,10 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     chatContainer.innerHTML += `<div class="self">
                     <p>${data.message}</p></div>`
 
-                    socket.emit('chat message', { msg: data.message, username })
+                    socket.emit('chat message', { msg: data.message, username, socketId: socket.id })
                     document.getElementById('messageInput').value = ''
                     return
                 }
+                window.alert(await response.text())
             })
             .catch(error => {
                 window.alert(error);
@@ -107,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     const data = await response.json();
                     socket.emit('uploadFile', { msg: data.message, fileName: data.fileName, username })
-                     document.getElementById('uploadedFile').value = ''
+                    document.getElementById('uploadedFile').value = ''
                 }
             })
             .catch(error => {
@@ -118,14 +116,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    socket.on('chat message', ({ msg, username }) => {
+    socket.on('chat message', ({ msg, username, socketId }) => {
         chatContainer.innerHTML += `<div class="other"> <h5>from ${username}:</h5>
                         <p>${msg}</p> </div>`
 
         const reciever = localStorage.getItem('username')
         const isWindowClosed = window.closed
         if (isWindowClosed === false) {
-            socket.emit('seenMessage', { isWindowClosed, reciever })
+            socket.emit('seenMessage', { isWindowClosed, socketId, reciever })
         }
     })
 
@@ -137,6 +135,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     socket.on('uploadFile', ({ username }) => {
+        $('#notificationContainer').fadeIn('slow');
         notificationContainer.innerHTML +=
             `<div id="notificationMessage"><p>${username} uploded a file</p></div>`
 
@@ -146,8 +145,12 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     socket.on('seenMessage', ({ reciever }) => {
+        $('#notificationContainer').fadeIn('slow');
         notificationContainer.innerHTML +=
             `<div id="notificationMessage"><p>${reciever} see Message</p></div>`
+
+        var selfs = document.querySelectorAll(".self");
+        selfs[selfs.length - 1].innerHTML += `<img src="./image/tick-icon-21.png"></img>`
 
         setTimeout(function () {
             $('#notificationContainer').fadeOut('fast');

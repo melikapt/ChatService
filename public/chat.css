@@ -58,6 +58,16 @@
     margin-top: 10px;
 }
 
+.self p{
+    display: inline-block;
+}
+
+.self img{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
 .other {
     margin: auto;
     border: solid;

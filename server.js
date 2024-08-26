@@ -49,7 +49,8 @@ io.on('connection', (socket) => {
 
   socket.on('seenMessage',(data)=>{
     {
-      socket.broadcast.emit('seenMessage',data)
+      // socket.broadcast.emit('seenMessage',data)
+      socket.broadcast.to(data.socketId).emit('seenMessage',{reciever:data.reciever})
     }
   })
 

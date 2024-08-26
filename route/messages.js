@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post('/', auth, async (req, res) => {
     const { error } = validateMessage(req.body);
-    
     if (error) return res.status(400).send(error.details[0].message)
 
     const user = await User.findById({ _id: req.user._id })
@@ -20,16 +19,16 @@ router.post('/', auth, async (req, res) => {
             username: user.username,
             email: user.email
         },
-        createdAt:Date.now()
+        createdAt: Date.now()
     })
     await message.save()
 
     res.status(200).send(_.pick(message, ['message', 'username']))
 })
 
-router.get('/',auth,async(req,res)=>{
-    const messages=await Message.find()
-    .select('message sender.username sender.email -_id')
+router.get('/', auth, async (req, res) => {
+    const messages = await Message.find()
+        .select('message sender.username sender.email -_id')
 
     res.status(200).send(messages);
 })
